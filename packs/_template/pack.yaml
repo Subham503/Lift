@@ -1,0 +1,14 @@
+name: template_pack
+version: "0.1.0"
+description: Template pack specification for domain simulation
+scenarios:
+  - name: baseline
+    description: Default baseline scenario
+policies:
+  - heuristic
+guardrails:
+  - default
+metrics:
+  - net_utility
+  - fpr
+  - harm_ratio

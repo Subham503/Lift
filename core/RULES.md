@@ -1,0 +1,98 @@
+# core/RULES.md — Technical invariants for the Lift engine
+
+These are hard rules. Each one must have a test in `tests/invariants/`.
+A rule without a test is not implemented.
+
+## 1. Layout
+```
+core/
+  sim/          simulator: world, scenarios, types
+  policies/     policy interface + shared helpers
+  guardrails/   pure veto functions
+  eval/         harness, metrics, bootstrap, scenario sweeps
+  audit/        append-only event store
+  report/       REPORT.md generator
+packs/<name>/   domain pack: scenarios, features, policies, LIMITS.md
+packs/_template/
+```
+Packs may import from `core/`. `core/` never imports from `packs/`.
+
+## 2. Observable vs hidden state
+- Two separate types: `Observable` (what a real system could see) and `Hidden` (ground truth: fraud label, true cause, attacker identity).
+- Policies receive only `Observable`. Passing `Hidden` to a policy is a type error and a test failure.
+- Only `oracle` may read `Hidden`. It is labelled `ceiling`, never a competitor.
+- The outcome function `resolve(action, hidden, rng)` decides results from physical preconditions and `Hidden`. It never reads a field named like the label the policy tries to predict as a shortcut to success.
+- Test: replace every label with random values; outcomes must change only through the documented preconditions.
+
+## 3. Determinism
+- Every run takes an explicit integer seed. No global `random`, no `np.random.seed`.
+- Use `numpy.random.Generator` with named streams: one stream per event type (arrivals, amounts, fraud injection, outcomes, noise).
+- Both branches of any conditional draw from their stream whether or not the draw is used. One policy's extra action must never shift luck for later events.
+- Same seed + same code + same config => byte-identical results. Test: run twice, compare hashes.
+- Bootstrap uses its own fixed seed stored in config.
+
+## 4. Paired evaluation
+- For each seed, every policy sees the identical event batch (same customers, same fraud, same outages).
+- Lift per seed = metric(policy) − metric(do_nothing) on that seed.
+- Minimum 20 seeds per scenario. Fewer than 20 => the report must print `UNDERPOWERED` next to the result.
+- Report mean lift, and 95% CI from paired bootstrap, 10,000 resamples, percentile method, fixed seed.
+- Never use a t-interval for rupee or amount-weighted metrics (heavy tails).
+- Report each scenario separately AND the worst scenario. Never only the average.
+
+## 5. Required policies per pack
+| Name | Rule |
+|---|---|
+| `do_nothing` | baseline. Always present. |
+| `rules` | hand-written incumbent. Must be tuned with the same effort as the model (tuning budget recorded in the report). |
+| `ml_*` | at least one learned policy. |
+| `oracle` | ceiling only. Excluded from "best policy" claims. |
+
+A pack with a weak or untuned `rules` baseline fails `lift check`.
+
+## 6. Model training and data
+- Split by seed (simulated) or by time (real data). Never random-by-row within a batch.
+- Labels come from ground truth only. Never from a column the pipeline overwrites with its own prediction.
+- Features at train time are built by the same production feature code. No train/serve copy.
+- Report the accuracy next to the ceiling the available features allow (majority-class baseline plus a features-only Bayes or simple-model reference).
+- Real public data results and simulator results are produced by separate commands and stored in separate files.
+
+## 7. Guardrails
+- Guardrails are pure functions: `evaluate(action, observable, now) -> Verdict`. No clock, no DB, no network inside. The decision instant is an argument.
+- A veto is final. The agent, a policy, or an LLM may propose; the guardrail decides.
+- `GIVE_UP` / `ALLOW` safe-default actions can never be vetoed.
+- Every veto names its reason code and, where possible, the alternative that is allowed ("not now" / "not that way").
+- Every action a policy takes is replayed through guardrails in the evaluation. Report the count of actions that would have been refused. A policy that needs vetoed actions to win has not won.
+
+## 8. Audit log
+- Append-only. No UPDATE, no DELETE in code or SQL.
+- Events: input received, features, score and evidence, policy chosen, guardrail verdict, action taken, outcome, attribution verdict with reason.
+- Every decision must be re-derivable from its audit row.
+
+## 9. Attribution and lift
+- `lift` (paired difference vs do_nothing) is the headline.
+- Any "attributed benefit" figure is computed by a second, independent route. Invariant: `lift <= attributed` per run, tested.
+- Benefit that would have arrived anyway is never counted as a win.
+
+## 10. Harm is measured, not optional
+Every run must output, next to benefit:
+- false blocks (good customers wrongly stopped), count and amount delayed
+- friction events (step-ups, reviews) and review-queue hours
+- worst-off slice result (see `docs/HONESTY.md` section 5)
+A run that omits harm metrics fails `lift check`.
+
+## 11. Reports
+- `REPORT.md` is generated by `lift report`. Never edited by hand. Header holds: commit hash, command, seed list, config hash, library versions, timestamp.
+- Re-running the report with unchanged code changes only the timestamp. Test this.
+
+## 12. Tests required before any phase can close
+- `test_policy_never_receives_hidden`
+- `test_outcome_independent_of_label_shortcut`
+- `test_same_seed_same_hash`
+- `test_paired_batches_identical_across_policies`
+- `test_extra_action_does_not_shift_rng`
+- `test_lift_not_above_attributed`
+- `test_guardrail_veto_cannot_be_bypassed`
+- `test_safe_default_never_vetoed`
+- `test_audit_log_append_only`
+- `test_report_matches_fresh_run`
+- `test_min_seeds_flag_underpowered`

@@ -1,0 +1,16 @@
+name: payments_fraud
+version: "0.1.0"
+description: Card transaction fraud detection simulation with velocity bursts and CNP attacks
+scenarios:
+  - name: synthetic
+    description: Synthetic stream of clean and fraudulent credit card transactions
+policies:
+  - rule_based
+  - threshold_model
+guardrails:
+  - high_value
+metrics:
+  - net_benefit
+  - fraud_caught_rate
+  - fpr
+  - p95_harm_ratio

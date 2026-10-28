@@ -1,0 +1,4 @@
+# Ignore all raw run output in results/
+*
+!.gitignore
+!.gitkeep

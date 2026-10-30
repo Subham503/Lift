@@ -136,16 +136,16 @@ def test_lift_not_above_attributed():
 def test_guardrail_veto_cannot_be_bypassed():
     """apply_guardrails(proposed, rails, obs, now) -> GuardedDecision(final, verdicts).
 
-    Strict rail, proposed ALLOW -> final is not ALLOW, verdict recorded.
+    Strict rail, proposed BLOCK -> final is not BLOCK, verdict recorded.
     apply_guardrails(..., override=True) raises TypeError.
     """
-    proposed = Action(decision="ALLOW", confidence=1.0)
+    proposed = Action(decision="BLOCK", confidence=1.0)
     rail = StrictRail()
     obs = Observable(id="1", features={"amount": 1000.0})
     now = datetime.now(UTC)
 
     guarded = apply_guardrails(proposed, [rail], obs, now)
-    assert guarded.final.decision != "ALLOW"
+    assert guarded.final.decision != "BLOCK"
     assert len(guarded.verdicts) > 0
     assert any(v.verdict == VerdictType.BLOCK for v in guarded.verdicts)
 

@@ -10,19 +10,21 @@ None. No real transaction data has been used. Every figure from this pack is SIM
 - Fraud and legit features overlap by design, so no policy can be perfect. The overlap is not calibrated to real data.
 
 ## 3. Assumptions
-| Name | Value | Reason |
-|---|---|---|
-| Fraud rate | 2.5% of events | Chosen by us. Round number, not measured |
-| Events per seed | 2,000 | Chosen by us |
-| Amount range | $5 to $5,000, log-uniform | Chosen by us |
-| Feature generator | hand-set velocity, device trust, cross-border, account age distributions | Chosen by us. Informative but overlapping |
-| Chargeback fee | $15 | Chosen by us |
-| Blocked legit sale | 3% of amount + $5 friction | Chosen by us |
-| Manual review | $4 (6 min at $40/hour) | Chosen by us |
-| Review fraud catch rate | 90% | Chosen by us |
-| GIVE_UP | treated as ALLOW | Chosen by us |
-| Guardrail veto of a BLOCK | becomes REVIEW | Chosen by us |
-| Minimum seeds | 20 | Underpowered flag below this |
+Every row below is an ASSUMPTION chosen by us, not measured.
+
+| Name | Value | Tag | Reason |
+|---|---|---|---|
+| Fraud rate | 2.5% of events | ASSUMPTION | Round number, not measured |
+| Events per seed | 2,000 | ASSUMPTION | Chosen for run speed |
+| Amount range | $5 to $5,000, log-uniform | ASSUMPTION | Chosen by us |
+| Feature generator | hand-set velocity, device trust, cross-border, account age | ASSUMPTION | Informative but overlapping |
+| Chargeback fee | $15 | ASSUMPTION | Chosen by us |
+| Blocked legit sale | 3% of amount + $5 friction | ASSUMPTION | Chosen by us |
+| Manual review | $4 (6 min at $40/hour) | ASSUMPTION | Chosen by us |
+| Review fraud catch rate | 90% | ASSUMPTION | Chosen by us |
+| GIVE_UP | treated as ALLOW | ASSUMPTION | Chosen by us |
+| Guardrail veto of a BLOCK | becomes REVIEW | ASSUMPTION | Chosen by us |
+| Minimum seeds | 20 | ASSUMPTION | Underpowered flag below this |
 
 Costs live in `core/sim/costs.py`. Scenario parameters live in `core/sim/scenarios.py`. Results are valid only under these values.
 

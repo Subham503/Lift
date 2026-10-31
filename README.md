@@ -1,121 +1,196 @@
-# 100 Days · 100 Web Projects
-A curated archive of frontend experiments — browse, fork, contribute.
+# Lift
 
-## Projects
-- **Day 1 — To-Do List** — ./public/TO_DO_LIST/todolist.html — _tool_ — HTML, CSS, JS
-- **Day 2 — Digital Clock** — ./public/digital_clock/digitalclock.html — _ui_ — HTML, CSS, JS
-- **Day 3 — Indian Flag** — ./public/indianflag/flag.html — _ui_ — HTML, CSS
-- **Day 4 — Dropdown Navbar** — ./public/dropdown_navbar/index.html — _ui_ — HTML, CSS, JS
-- **Day 5 — Animated Cursor** — ./public/Animated-cursor/animated-cursor.html — _ui_ — CSS, JS
-- **Day 6 — Auto Background Slider** — ./public/Background-Image-sider/slider.html — _ui_ — HTML, CSS, JS
-- **Day 7 — Typewriter Effect** — ./public/typewriter/typewriter.html — _ui_ — HTML, CSS, JS
-- **Day 8 — Parallax Website** — ./public/Parallel-x%20website/parallal.html — _ui_ — HTML, CSS, JS
-- **Day 9 — Captcha Generator** — ./public/captcha/captcha.html — _tool_ — HTML, CSS, JS
-- **Day 10 — QR Code Generator** — ./public/qr%20generator/qr.html — _api_ — HTML, JS, API
-- **Day 11 — Express Static Server** — ./public/index.html — _tool_ — Node, Express
-- **Day 12 — Nodemailer Contact Form** — ./public/gmail_nodemailer/public/mail.html — _tool_ — Node, Nodemailer
-- **Day 13 — Login Form — MERN** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/loginusingmern — _tool_ — React, MongoDB, Node
-- **Day 14 — File Uploader** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/file_uploader — _tool_ — Node, Multer
-- **Day 15 — Progress Bar** — ./public/progress_bar/progress_bar.html — _ui_ — HTML, CSS, JS
-- **Day 16 — Custom Scrollbar CSS** — ./public/index.html — _ui_ — CSS
-- **Day 17 — Slider — Swiper API** — ./public/slider%20box/index.html — _ui_ — JS, Swiper
-- **Day 18 — Carousel Solar System** — ./public/carousal/index.html — _ui_ — HTML, CSS, JS
-- **Day 19 — Planto — Plant Website** — ./public/plantwebsite/plant.html — _ui_ — HTML, CSS, JS
-- **Day 20 — EveSparks** — https://evesparks.onrender.com/ — _tool_ — React, Node
-- **Day 21 — Video BG Slider — React** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/travel_website — _ui_ — React
-- **Day 22 — Page Loader** — ./public/pageloader/pageloader.html — _ui_ — CSS, JS
-- **Day 23 — Jarvis Virtual Assistant** — ./public/Jarvis-AI-main/index.html — _api_ — JS, SpeechAPI
-- **Day 24 — AI Chat Bot** — ./public/AI%20ChatBot/chatbot.html — _api_ — JS, API
-- **Day 25 — Tic-Tac-Toe** — ./public/TicTacToe/index.html — _game_ — HTML, CSS, JS
-- **Day 26 — Maze Game** — ./public/Maze-Game-main/index.html — _game_ — Canvas, JS
-- **Day 27 — Memory Game** — ./public/MemoryGame/index.html — _game_ — HTML, CSS, JS
-- **Day 28 — Wordle** — ./public/WORDLE/index.html — _game_ — HTML, CSS, JS
-- **Day 29 — Snake Game** — ./public/snake_game/index.html — _game_ — Canvas, JS
-- **Day 30 — Flappy Bird** — ./public/Flappy-bird-main/index.html — _game_ — Canvas, JS
-- **Day 31 — Password Manager** — ./public/password%20manager/index.html — _tool_ — HTML, CSS, JS
-- **Day 32 — Missionaries & Cannibals** — ./public/Missionaries&Cannibals/index.html — _game_ — JS
-- **Day 33 — Weather Forecast** — ./public/Weather%20Forcasting/index.html — _api_ — JS, WeatherAPI
-- **Day 34 — Email Validator** — ./public/email%20validator/index.html — _tool_ — HTML, JS
-- **Day 35 — JS Calculator** — ./public/Vanilla-JavaScript-Calculator-master/index.html — _tool_ — HTML, CSS, JS
-- **Day 36 — Medical App** — ./public/Medical_App/index.html — _tool_ — HTML, CSS, JS
-- **Day 37 — 2048 Game** — ./public/2048_game/index.html — _game_ — HTML, CSS, JS
-- **Day 38 — GitHub Profile Finder** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/github_profile_finder — _api_ — JS, GitHub API
-- **Day 39 — Notes App** — ./public/notes-app/index.html — _tool_ — HTML, CSS, JS
-- **Day 40 — Analog Clock** — ./public/AnalogClock/index.html — _ui_ — Canvas, JS
-- **Day 41 — Scroll Dark Game** — ./public/Scroll%20Game%20Dark%20Run/index.html — _game_ — Canvas, JS
-- **Day 42 — Amazon Clone** — ./public/Amazon_Clone/index.html — _clone_ — HTML, CSS
-- **Day 43 — Password Generator** — ./public/Password_Generator/index.html — _tool_ — HTML, CSS, JS
-- **Day 44 — BMI Calculator** — ./public/BMI_Calculator/index.html — _tool_ — HTML, CSS, JS
-- **Day 45 — Black Jack** — ./public/BlackJack/blackJ.html — _game_ — HTML, CSS, JS
-- **Day 46 — Palindrome Generator** — ./public/Palindrome_Generator/index.html — _tool_ — HTML, JS
-- **Day 47 — Ping Pong** — ./public/ping/index.html — _game_ — Canvas, JS
-- **Day 48 — Text to Voice Converter** — ./public/TextToVoiceConverter/index.html — _api_ — JS, SpeechAPI
-- **Day 49 — URL Shortener** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/url_shortener — _tool_ — Node, Express
-- **Day 50 — Recipe Genie** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Recipe-Genie — _api_ — JS, API
-- **Day 51 — Netflix Clone** — ./public/Netflix_Cloning/Index.html — _clone_ — HTML, CSS
-- **Day 52 — ClimaCode 2.0** — ./public/ClimaCode%202.0/index.html — _api_ — JS, WeatherAPI
-- **Day 53 — E-Commerce Cart** — ./public/e-commerce_cart/index.html — _tool_ — HTML, CSS, JS
-- **Day 54 — Budget Tracker** — ./public/Budget%20Tracker/index.html — _tool_ — HTML, CSS, JS
-- **Day 55 — Cricket Game** — ./public/cricket/index.html — _game_ — HTML, CSS, JS
-- **Day 56 — Pastebin — Svelte** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/pastebin — _tool_ — Svelte
-- **Day 57 — Glowing Social Media Icons** — ./public/Social%20Media%20Glowing/index.html — _ui_ — CSS
-- **Day 58 — Music App** — ./public/Music%20App/index.html — _ui_ — HTML, CSS, JS
-- **Day 59 — Blog Page** — ./public/Blog%20Page/index.html — _ui_ — HTML, CSS
-- **Day 60 — Marketing Website** — ./public/marketing_website/index.html — _ui_ — HTML, CSS, JS
-- **Day 61 — Hologram Button** — ./public/Holo%20Button/index.html — _ui_ — CSS, JS
-- **Day 62 — Solar System Explorer** — ./public/Solar%20System%20Explorer%20in%20CSS%20only%20haml/template.html — _ui_ — CSS
-- **Day 63 — Image to Text App** — ./public/Image-To-Text-App/index.html — _api_ — JS, OCR API
-- **Day 64 — Zomato Clone** — ./public/zomato-clone/zomato.html — _clone_ — HTML, CSS
-- **Day 65 — The Cube** — ./public/The%20Cube/index.html — _ui_ — CSS, JS
-- **Day 66 — Flask Auth App** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/flask_auth_app — _tool_ — Python, Flask
-- **Day 67 — Blog Website** — ./public/blog/main.html — _ui_ — HTML, CSS, JS
-- **Day 68 — 3D Rotating Card** — ./public/3d%20cards/index.html — _ui_ — CSS, JS
-- **Day 69 — Spotify Clone** — ./public/spotify-clone%20-project/index.html — _clone_ — HTML, CSS
-- **Day 70 — Insect Catch Game** — ./public/Insect-Catch-Game/index.html — _game_ — HTML, CSS, JS
-- **Day 71 — Quotely Laughs** — ./public/Quotely-Laughs/index.html — _api_ — JS, API
-- **Day 72 — Contact Book** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Contact%20Book — _tool_ — HTML, CSS, JS
-- **Day 73 — Candy Crush Game** — ./public/Candy_Crush_Game/index.html — _game_ — Canvas, JS
-- **Day 74 — Stock Profit Calculator** — ./public/Stock-Profit-Calculator/index.html — _tool_ — HTML, CSS, JS
-- **Day 75 — Code Space Jump Game** — ./public/code-jump-space-game/index.html — _game_ — Canvas, JS
-- **Day 76 — Animated Searchbar** — ./public/Animated%20Searchbar/index.html — _ui_ — CSS, JS
-- **Day 77 — Rock Paper Scissors** — ./public/Stone-Paper-Scissor/index.html — _game_ — HTML, CSS, JS
-- **Day 78 — NPM Package Search** — ./public/NPM%20Package%20Search/index.html — _api_ — JS, npm API
-- **Day 79 — LinkedIn Clone** — ./public/Linkedin-Clone/index.html — _clone_ — HTML, CSS
-- **Day 80 — Resume Studio** — ./public/ResumeStudio/index.html — _tool_ — HTML, CSS, JS
-- **Day 81 — Simon Says Game** — ./public/Simon_Says_Game/index.html — _game_ — HTML, CSS, JS
-- **Day 82 — Love Calculator** — ./public/Love-Calculator/index.html — _game_ — HTML, CSS, JS
-- **Day 83 — Exchange Currency** — ./public/Exchange_Currency/index.html — _api_ — JS, API
-- **Day 84 — Lights Out Puzzle** — ./public/Lights_Out_Puzzle/index.html — _game_ — HTML, CSS, JS
-- **Day 85 — Image Search Engine** — ./public/Image Search Engine/index.html — _api_ — JS, Unsplash API
-- **Day 86 — 3D Profile Card** — ./public/3d profile Card/index.html — _ui_ — CSS, JS
-- **Day 87 — Breakout Game** — ./public/Breakout game/index.html — _game_ — Canvas, JS
-- **Day 88 — Job Dashboard** — ./public/Job dashboard/jobs.html — _ui_ — HTML, CSS, JS
-- **Day 89 — N-Queens Solver** — ./public/N_Queen/index.html — _tool_ — HTML, CSS, JS
-- **Day 90 — Quiz App with Timer** — ./public/QuizeApp Timer/index1.html — _tool_ — HTML, CSS, JS
-- **Day 91 — Voting App Backend** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Voting_Application_Backend — _tool_ — Node, MongoDB
-- **Day 92 — Slide Puzzle Game** — ./public/Slide puzzle Game/index.html — _game_ — HTML, CSS, JS
-- **Day 93 — TextUtils — React** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Textutils — _tool_ — React
-- **Day 94 — Hangman Game** — ./public/HangmanGame/index.html — _game_ — HTML, CSS, JS
-- **Day 95 — TodoList — React TS** — ./public/TodoList-React-TS-Tailwind/index.html — _tool_ — React, TypeScript
-- **Day 96 — HCL Color Generator** — ./public/HCL Color Generator/index.html — _tool_ — HTML, CSS, JS
-- **Day 97 — Time Capsule** — ./public/Time-Capsule/index.html — _tool_ — HTML, CSS, JS
-- **Day 98 — Virtual Piano** — ./public/Virtual Piano/index.html — _ui_ — JS, Web Audio
-- **Day 99 — NASA APOD Extension** — ./public/NASA-APOD/popup.html — _api_ — JS, NASA API
-- **Day 100 — Text Saver Extension** — ./public/Text_Saver_Ext/popup.html — _tool_ — JS, Chrome API
-- **Day 101 — Personal Finance Tracker** — ./public/FinanceTracker/index.html — _tool_ — HTML, CSS, JS
-- **Day 102 — Travel Booking Website** — ./public/Travel_booking_website/index.html — _ui_ — HTML, CSS, JS
-- **Day 103 — Drumkit Game** — ./public/Drumkit_Game/index.html — _ui_ — JS, Web Audio
-- **Day 104 — Debug Website** — ./public/Debug-Website/index.html — _tool_ — HTML, CSS, JS
-- **Day 105 — Periodic Table** — ./public/Periodic Table/index.html — _ui_ — HTML, CSS, JS
-- **Day 106 — Plants Website** — ./public/Plants Website/index.html — _ui_ — HTML, CSS, JS
-- **Day 107 — DocNow** — ./public/DocNow/index.html — _tool_ — HTML, CSS, JS
-- **Day 108 — Expense Tracker** — ./public/expense_Tracker/index.html — _tool_ — HTML, CSS, JS
-- **Day 109 — Mood Tracker** — ./public/Mood Tracker/index.html — _tool_ — HTML, CSS, JS
-- **Day 110 — CryptoShow** — ./public/CRYPTOSHOW/index.html — _api_ — JS, Crypto API
-- **Day 111 — Whack-a-Mole Game** — ./public/Whack-a-Mole Game/index.html — _game_ — HTML, CSS, JS
-- **Day 112 — Nykaa Clone** — ./public/Nykaa-clone/index.html — _clone_ — HTML, CSS
-- **Day 113 — CPU Scheduler** — ./public/CpuScheduler/index.html — _tool_ — HTML, CSS, JS
-- **Day 114 — EchoNotes** — ./public/EchoNotes/index.html — _tool_ — JS, SpeechAPI
-- **Day 115 — Event Registration System** — https://event-registration-system-w10a.onrender.com/ — _tool_ — Node, Express
-- **Day 116 — AI Image Classifier** — ./public/AI Image Classifier/index.html — _tool_ — HTML, CSS, JS, AI
-- **Day 117 — Habit Tracker Web App** — ./public/Habit-Tracker-Web-App/index.html — _undefined_ — 
+**Don't trust AI decisions. Measure them.**
+
+[![CI](https://github.com/Subham503/Lift/actions/workflows/ci.yml/badge.svg)](https://github.com/Subham503/Lift/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](pyproject.toml)
+[![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-orange.svg)](#status)
+
+[What works today](#what-works-today) ·
+[Results](#results) ·
+[Status](#status) ·
+[Quickstart](#quickstart) ·
+[How it works](#how-it-works) ·
+[Contributing](#contributing)
+
+</div>
+
+---
+
+Lift tests decision policies, with fraud flagging as the first example, against a do-nothing baseline on identical simulated events. It is built to report the measured difference with a confidence interval, the harm to good customers right next to it, and the limits of the result.
+
+> [!WARNING]
+> **Pre-alpha. There is no result to show yet.** The engine and its 11 invariant tests work. The first domain pack is still being built. Anything the dashboard shows today is labeled demo data.
+
+## What works today
+
+Both captures below are generated from real command output by `scripts/make_readme_assets.py`. Nothing is typed by hand.
+
+**The CLI**
+
+![lift --help](docs/assets/lift-help.svg)
+
+`lift report` renders a results file as a table with confidence intervals. `lift run`, the command that writes that file, is next. There is no screenshot of a result here because none exists yet, and none will be faked.
+
+**The rules the engine enforces**
+
+![invariant tests](docs/assets/invariants.svg)
+
+<details>
+<summary>What each of the 11 invariant tests checks</summary>
+
+| Test | Plain meaning |
+|:--|:--|
+| `policy_never_receives_hidden` | A policy gets observable state only. Passing it hidden truth raises an error. |
+| `outcome_independent_of_label_shortcut` | The label text cannot change an outcome. Only fraud or not, and the amount, count. |
+| `same_seed_same_hash` | The same seed gives byte-identical random streams. |
+| `paired_batches_identical_across_policies` | Every policy sees the same events for a seed. A different seed gives different events. |
+| `extra_action_does_not_shift_rng` | Acting on one event never changes the luck of the next one. |
+| `lift_not_above_attributed` | Measured lift cannot exceed a benefit figure computed by a second, independent route. |
+| `guardrail_veto_cannot_be_bypassed` | A veto changes the final action and is recorded. No override argument exists. |
+| `safe_default_never_vetoed` | `ALLOW` and `GIVE_UP` pass through unchanged. The ignored veto is still recorded. |
+| `audit_log_append_only` | Earlier bytes never change. There is no delete or update method. |
+| `report_matches_fresh_run` | Same inputs give the same report, except the timestamp line. |
+| `min_seeds_flag_underpowered` | Too few seeds get flagged as underpowered. |
+
+</details>
+
+## Results
+
+**No results yet.**
+
+When the first run exists, this section will show the headline lift with its confidence interval, the harm measured next to it, and the exact command that reproduces both. Every number carries one tag:
+
+| Tag | Meaning |
+|:--|:--|
+| `REAL-DATA` | Measured on a real public dataset, by a command anyone can rerun |
+| `SIMULATED` | Measured inside the Lift simulator |
+| `ASSUMPTION` | An input we chose, such as the fraud rate or the cost of a review |
+
+A number with no tag counts as a bug.
+
+## What is real and what is simulated
+
+| Part | Kind | Detail |
+|:--|:--|:--|
+| Engine, guardrails, audit log, bootstrap CI, report generator | Real code, tested | 11 invariants plus unit tests |
+| Transaction stream | `SIMULATED` | Synthetic events, not calibrated to any real data |
+| Fraud rate, chargeback fee, review cost, friction, review catch rate | `ASSUMPTION` | Chosen by us in `core/sim/costs.py` and `core/sim/scenarios.py`, listed in [`packs/payments_fraud/LIMITS.md`](packs/payments_fraud/LIMITS.md) |
+| Real transaction data | None | Not used anywhere |
+
+### Known limitations
+
+- Every dollar value comes from an assumed cost model. Results hold only under it, and changing it can change which policy wins.
+- The synthetic features overlap on purpose, but the overlap is not calibrated to real fraud.
+- The payments fraud policies and `HighValueGuardrail` are still stubs.
+- A simulated result is not evidence of a real deployment outcome.
+
+## Status
+
+✅ done · 🟡 next · ⬜ planned
+
+| | Area | Notes |
+|:-:|:--|:--|
+| ✅ | Lint, type checks, CI workflow | Configured |
+| ✅ | Frozen rule files with hash verification | Build fails if they change |
+| ✅ | Claim guard for banned phrases and untagged figures | Unit tested |
+| ✅ | RNG streams, bootstrap CI, audit log, guardrail chain, cost model, outcome resolution, report generator | Unit tested |
+| ✅ | Evaluation harness and synthetic transaction scenario | |
+| ✅ | 11 invariant tests | All passing |
+| ✅ | `lift report` | Reads a results file |
+| 🟡 | Payments fraud policies and `HighValueGuardrail` | Stubs |
+| 🟡 | `lift run` and results files | Not implemented |
+| 🟡 | Local dashboard | Interface built, demo data only |
+| ⬜ | `lift check`, `lift dashboard`, `lift new-pack` | Print "not implemented" |
+| ⬜ | Harm and fairness slices | |
+| ⬜ | Held-out stress scenarios and sensitivity runs | |
+| ⬜ | Second pack (logistics) | |
+
+## Quickstart
+
+Requires Python 3.12 or newer.
+
+**Windows (PowerShell)**
+
+```powershell
+git clone https://github.com/Subham503/Lift.git
+cd Lift
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -e ".[dev]"
+```
+
+**Linux or macOS**
+
+```bash
+git clone https://github.com/Subham503/Lift.git
+cd Lift
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+**Check that it works**
+
+```bash
+lift --help
+pytest
+python scripts/dev.py check
+```
+
+`python scripts/dev.py check` runs six stages: lint, types, claim guard, unit tests, the 11 invariant tests, and frozen-file hashes.
+
+## How it works
+
+```mermaid
+flowchart LR
+    S["Scenario"] --> E["Events"]
+    E --> P["Policy proposes an action"]
+    P --> G{"Guardrails"}
+    G -->|"veto"| V["Sent to review"]
+    G -->|"pass"| O["Outcome from hidden truth"]
+    V --> O
+    O --> L[("Audit log")]
+    L --> R["Report"]
+```
+
+- Policies see only observable state. Ground truth stays hidden from them.
+- Every policy runs on identical event batches with fixed seeds.
+- Planned comparison set: do-nothing baseline, tuned rules, a learned model, and an oracle used only as a ceiling.
+- Benefit is always shown next to harm: wrongly blocked customers, friction, review load, and the worst-off group.
+
+## Design rules
+
+The project is built under written rules that the code and tests must follow.
+
+| File | What it covers |
+|:--|:--|
+| [`core/RULES.md`](core/RULES.md) | Engine invariants, each backed by a test |
+| [`docs/HONESTY.md`](docs/HONESTY.md) | Tagging, harm reporting, banned claims, limits files |
+| [`AGENTS.md`](AGENTS.md) | How contributors and coding agents work, phase by phase |
+
+These three files are frozen. A hash check fails the build if they change.
+
+<details>
+<summary>Repository layout</summary>
+
+```
+core/        engine: sim, policies, guardrails, eval, audit, report, cli
+packs/       domain packs, plus a template for new ones
+dashboard/   local results viewer (reads result files only)
+docs/        honesty rules, architecture, phase plans, README captures
+reports/     phase reports and generated evaluation reports
+tests/       invariants, unit, integration
+scripts/     dev runner, claim guard, README capture generator
+```
+
+</details>
+
+## Contributing
+
+The engine is still moving. Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and the design rules above first. Packs, policies, and scenarios are the planned contribution points once the core settles.
+
+## License
+
+Distributed under the [MIT License](LICENSE).

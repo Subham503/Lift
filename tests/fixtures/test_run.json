@@ -1,0 +1,58 @@
+[
+  {
+    "run_id": "test_run_001",
+    "pack": "payments_fraud",
+    "scenario": "payments_fraud_synthetic",
+    "created_at": "2026-10-28T14:30:00Z",
+    "seed": 42,
+    "seeds_evaluated": 20,
+    "sample_size_n": 2000,
+    "policies": [
+      {
+        "policy_id": "do_nothing",
+        "name": "DoNothingPolicy",
+        "type": "baseline",
+        "is_baseline": true,
+        "description": "Zero intervention baseline.",
+        "metrics": {
+          "net_benefit": { "mean": 0, "lo": 0, "hi": 0, "n": 2000, "unit": "USD" },
+          "lift_vs_baseline": { "mean": 0, "lo": 0, "hi": 0, "n": 2000, "unit": "USD" },
+          "fraud_caught_rate": { "mean": 0, "lo": 0, "hi": 0, "n": 2000, "unit": "%" },
+          "false_positive_rate": { "mean": 0, "lo": 0, "hi": 0, "n": 2000, "unit": "%" },
+          "review_load_hours": { "mean": 0, "lo": 0, "hi": 0, "n": 2000, "unit": "hrs" },
+          "guardrail_overrides": 0
+        }
+      },
+      {
+        "policy_id": "rules",
+        "name": "RuleBasedFraudPolicy",
+        "type": "rules",
+        "is_baseline": false,
+        "description": "Hand-tuned incumbent rule engine.",
+        "metrics": {
+          "net_benefit": { "mean": 412850, "lo": 401200, "hi": 424500, "n": 2000, "unit": "USD" },
+          "lift_vs_baseline": { "mean": 412850, "lo": 401200, "hi": 424500, "n": 2000, "unit": "USD" },
+          "fraud_caught_rate": { "mean": 74.2, "lo": 71.5, "hi": 76.8, "n": 2000, "unit": "%" },
+          "false_positive_rate": { "mean": 1.84, "lo": 1.45, "hi": 2.23, "n": 2000, "unit": "%" },
+          "review_load_hours": { "mean": 48.2, "lo": 44.1, "hi": 52.3, "n": 2000, "unit": "hrs" },
+          "guardrail_overrides": 18
+        }
+      },
+      {
+        "policy_id": "ml_guarded",
+        "name": "ThresholdModel + HighValueGuardrail",
+        "type": "guarded",
+        "is_baseline": false,
+        "description": "Threshold model with guardrail.",
+        "metrics": {
+          "net_benefit": { "mean": 749150, "lo": 742000, "hi": 756300, "n": 2000, "unit": "USD" },
+          "lift_vs_baseline": { "mean": 749150, "lo": 742000, "hi": 756300, "n": 2000, "unit": "USD" },
+          "fraud_caught_rate": { "mean": 92.4, "lo": 90.5, "hi": 94.2, "n": 2000, "unit": "%" },
+          "false_positive_rate": { "mean": 0.62, "lo": 0.42, "hi": 0.83, "n": 2000, "unit": "%" },
+          "review_load_hours": { "mean": 14.8, "lo": 12.6, "hi": 17, "n": 2000, "unit": "hrs" },
+          "guardrail_overrides": 47
+        }
+      }
+    ]
+  }
+]

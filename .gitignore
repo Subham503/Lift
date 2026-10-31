@@ -59,3 +59,9 @@ Thumbs.db
 reports/junit_invariants.xml
 acceptance_log.txt
 reports/phases/AUDIT_00_REPORT.md
+
+
+dashboard/tsconfig.tsbuildinfo
+dashboard/next-env.d.ts
+dashboard/.next/
+dashboard/node_modules/

@@ -1,4 +1,4 @@
-"""Integration tests for CLI commands in stubbed state."""
+"""Integration tests for implemented and stubbed CLI commands."""
 
 from typer.testing import CliRunner
 
@@ -21,8 +21,9 @@ def test_cli_check_stubbed():
     assert "not implemented" in result.output.lower()
 
 
-def test_cli_report_stubbed():
-    """CLI report command must exit 2 with 'not implemented' message."""
-    result = runner.invoke(app, ["report"])
-    assert result.exit_code == 2
-    assert "not implemented" in result.output.lower()
+def test_cli_report_renders_results():
+    """CLI report processes a fixture and prints the verdict and next action."""
+    result = runner.invoke(app, ["report", "--results", "tests/fixtures/test_run.json"])
+    assert result.exit_code == 0
+    assert "Best policy:  ThresholdModel + HighValueGuardrail" in result.output
+    assert "Next: lift check" in result.output

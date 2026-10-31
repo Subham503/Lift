@@ -35,6 +35,14 @@ scenario -> simulator -> policy proposes action -> guardrails may veto
 
 This is the design. Items are marked in the status table as they are built.
 
+### Policy dominance in CLI reports
+
+The CLI marks a non-baseline policy as `dominated` when another policy has at least
+as much net benefit and catches at least as much fraud, with a strict improvement
+in one of those measures. The do-nothing baseline remains labeled `baseline` because
+it is the reference point for lift and belongs on the comparison frontier when its
+cost is zero.
+
 ## Status
 
 | Area | Status |

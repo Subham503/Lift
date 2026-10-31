@@ -1,0 +1,700 @@
+[
+  {
+    "run_id": "run_20261028_01",
+    "pack": "payments_fraud",
+    "scenario": "payments_fraud_synthetic",
+    "scenario_description": "Synthetic baseline evaluation with 2.5% base fraud rate across standard payment channels",
+    "created_at": "2026-10-28T14:30:00Z",
+    "seed": 42,
+    "seeds_evaluated": 20,
+    "sample_size_n": 2000,
+    "events_digest": "sha256:7c9e1208af81bbd9319e7a4b8dfec8192a6c3f098d6f12089c25d7ef01ab32cf",
+    "config": {
+      "pack": "payments_fraud",
+      "scenario": "synthetic",
+      "base_fraud_rate": 0.025,
+      "currency": "USD",
+      "guardrail": "HighValueGuardrail",
+      "bootstrap_resamples": 10000,
+      "confidence_level": 0.95,
+      "min_seeds": 20
+    },
+    "pareto_frontier": [
+      {
+        "policy_id": "do_nothing",
+        "cost": 0,
+        "fraud_caught": 0,
+        "label": "Do Nothing Baseline"
+      },
+      {
+        "policy_id": "rules",
+        "cost": 1840,
+        "fraud_caught": 74.2,
+        "label": "Rule-Based Policy"
+      },
+      {
+        "policy_id": "ml_threshold",
+        "cost": 910,
+        "fraud_caught": 88.6,
+        "label": "Threshold Model Policy"
+      },
+      {
+        "policy_id": "ml_guarded",
+        "cost": 620,
+        "fraud_caught": 92.4,
+        "label": "Threshold Model + HighValueGuardrail"
+      }
+    ],
+    "policies": [
+      {
+        "policy_id": "do_nothing",
+        "name": "DoNothingPolicy",
+        "type": "baseline",
+        "is_baseline": true,
+        "description": "Zero intervention baseline. Allows all transactions unconditionally.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 1,
+            "lo": 1,
+            "hi": 1,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 0,
+          "attributed_benefit": 0
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 1,
+            "tpr": 1
+          }
+        ]
+      },
+      {
+        "policy_id": "rules",
+        "name": "RuleBasedFraudPolicy",
+        "type": "rules",
+        "is_baseline": false,
+        "description": "Hand-tuned incumbent rule engine checking velocity, cross-border tags, and amount thresholds.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 412850,
+            "lo": 401200,
+            "hi": 424500,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 412850,
+            "lo": 401200,
+            "hi": 424500,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 74.2,
+            "lo": 71.5,
+            "hi": 76.8,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 1.84,
+            "lo": 1.45,
+            "hi": 2.23,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 48.2,
+            "lo": 44.1,
+            "hi": 52.3,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.285,
+            "lo": 0.24,
+            "hi": 0.33,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 18,
+          "attributed_benefit": 420000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 0.5,
+            "tpr": 32
+          },
+          {
+            "fpr": 1,
+            "tpr": 54
+          },
+          {
+            "fpr": 1.84,
+            "tpr": 74.2
+          },
+          {
+            "fpr": 5,
+            "tpr": 81
+          },
+          {
+            "fpr": 10,
+            "tpr": 86.5
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      },
+      {
+        "policy_id": "ml_threshold",
+        "name": "ThresholdModelFraudPolicy",
+        "type": "learned",
+        "is_baseline": false,
+        "description": "Gradient-boosted decision model operating on 14 observable features with static threshold 0.70.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 684200,
+            "lo": 675100,
+            "hi": 693300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 684200,
+            "lo": 675100,
+            "hi": 693300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 88.6,
+            "lo": 86.4,
+            "hi": 90.7,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 0.91,
+            "lo": 0.65,
+            "hi": 1.18,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 24.5,
+            "lo": 21.8,
+            "hi": 27.2,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.124,
+            "lo": 0.09,
+            "hi": 0.16,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 32,
+          "attributed_benefit": 692000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 0.2,
+            "tpr": 45
+          },
+          {
+            "fpr": 0.5,
+            "tpr": 72
+          },
+          {
+            "fpr": 0.91,
+            "tpr": 88.6
+          },
+          {
+            "fpr": 2,
+            "tpr": 94
+          },
+          {
+            "fpr": 5,
+            "tpr": 97.2
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      },
+      {
+        "policy_id": "ml_guarded",
+        "name": "ThresholdModel + HighValueGuardrail",
+        "type": "guarded",
+        "is_baseline": false,
+        "description": "Threshold model combined with pure deterministic HighValueGuardrail vetoing unverified transfers > $5,000.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 749150,
+            "lo": 742000,
+            "hi": 756300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 749150,
+            "lo": 742000,
+            "hi": 756300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 92.4,
+            "lo": 90.5,
+            "hi": 94.2,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 0.62,
+            "lo": 0.42,
+            "hi": 0.83,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 14.8,
+            "lo": 12.6,
+            "hi": 17,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.078,
+            "lo": 0.05,
+            "hi": 0.11,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 47,
+          "attributed_benefit": 755000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 0.15,
+            "tpr": 52
+          },
+          {
+            "fpr": 0.35,
+            "tpr": 78.5
+          },
+          {
+            "fpr": 0.62,
+            "tpr": 92.4
+          },
+          {
+            "fpr": 1.5,
+            "tpr": 96.8
+          },
+          {
+            "fpr": 4,
+            "tpr": 98.9
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "run_id": "run_20261029_02",
+    "pack": "payments_fraud",
+    "scenario": "payments_fraud_stress_ring",
+    "scenario_description": "Adversarial stress test simulating an organized fraud ring with distributed bot networks and rotating proxies",
+    "created_at": "2026-10-29T09:15:00Z",
+    "seed": 101,
+    "seeds_evaluated": 20,
+    "sample_size_n": 2000,
+    "events_digest": "sha256:4b22c810f92a3ee045a198cfb784918e920ad511c7904b8b603d40857b320ef4",
+    "config": {
+      "pack": "payments_fraud",
+      "scenario": "stress_ring",
+      "base_fraud_rate": 0.082,
+      "currency": "USD",
+      "guardrail": "HighValueGuardrail",
+      "bootstrap_resamples": 10000,
+      "confidence_level": 0.95,
+      "min_seeds": 20
+    },
+    "pareto_frontier": [
+      {
+        "policy_id": "do_nothing",
+        "cost": 0,
+        "fraud_caught": 0,
+        "label": "Do Nothing Baseline"
+      },
+      {
+        "policy_id": "rules",
+        "cost": 3200,
+        "fraud_caught": 59.1,
+        "label": "Rule-Based Policy"
+      },
+      {
+        "policy_id": "ml_threshold",
+        "cost": 1850,
+        "fraud_caught": 78.4,
+        "label": "Threshold Model Policy"
+      },
+      {
+        "policy_id": "ml_guarded",
+        "cost": 1220,
+        "fraud_caught": 85.2,
+        "label": "Threshold Model + HighValueGuardrail"
+      }
+    ],
+    "policies": [
+      {
+        "policy_id": "do_nothing",
+        "name": "DoNothingPolicy",
+        "type": "baseline",
+        "is_baseline": true,
+        "description": "Zero intervention baseline. Allows all transactions unconditionally.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 0,
+            "lo": 0,
+            "hi": 0,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 1,
+            "lo": 1,
+            "hi": 1,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 0,
+          "attributed_benefit": 0
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 1,
+            "tpr": 1
+          }
+        ]
+      },
+      {
+        "policy_id": "rules",
+        "name": "RuleBasedFraudPolicy",
+        "type": "rules",
+        "is_baseline": false,
+        "description": "Hand-tuned incumbent rule engine under coordinated adversarial attack.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 310500,
+            "lo": 295000,
+            "hi": 326000,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 310500,
+            "lo": 295000,
+            "hi": 326000,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 59.1,
+            "lo": 55.4,
+            "hi": 62.8,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 3.2,
+            "lo": 2.75,
+            "hi": 3.65,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 84.1,
+            "lo": 78.5,
+            "hi": 89.7,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.442,
+            "lo": 0.39,
+            "hi": 0.5,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 38,
+          "attributed_benefit": 318000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 1,
+            "tpr": 28
+          },
+          {
+            "fpr": 3.2,
+            "tpr": 59.1
+          },
+          {
+            "fpr": 6,
+            "tpr": 68
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      },
+      {
+        "policy_id": "ml_threshold",
+        "name": "ThresholdModelFraudPolicy",
+        "type": "learned",
+        "is_baseline": false,
+        "description": "Gradient-boosted decision model operating under domain shift.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 542000,
+            "lo": 528000,
+            "hi": 556000,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 542000,
+            "lo": 528000,
+            "hi": 556000,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 78.4,
+            "lo": 75.2,
+            "hi": 81.6,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 1.85,
+            "lo": 1.48,
+            "hi": 2.22,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 46.2,
+            "lo": 41.5,
+            "hi": 50.9,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.215,
+            "lo": 0.17,
+            "hi": 0.26,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 64,
+          "attributed_benefit": 551000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 0.5,
+            "tpr": 42
+          },
+          {
+            "fpr": 1.85,
+            "tpr": 78.4
+          },
+          {
+            "fpr": 4,
+            "tpr": 86
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      },
+      {
+        "policy_id": "ml_guarded",
+        "name": "ThresholdModel + HighValueGuardrail",
+        "type": "guarded",
+        "is_baseline": false,
+        "description": "Threshold model with HighValueGuardrail constraining rapid bursts of large value attempts.",
+        "metrics": {
+          "net_benefit": {
+            "mean": 628900,
+            "lo": 618500,
+            "hi": 639300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "lift_vs_baseline": {
+            "mean": 628900,
+            "lo": 618500,
+            "hi": 639300,
+            "n": 2000,
+            "unit": "USD"
+          },
+          "fraud_caught_rate": {
+            "mean": 85.2,
+            "lo": 82.6,
+            "hi": 87.8,
+            "n": 2000,
+            "unit": "%"
+          },
+          "false_positive_rate": {
+            "mean": 1.22,
+            "lo": 0.92,
+            "hi": 1.52,
+            "n": 2000,
+            "unit": "%"
+          },
+          "review_load_hours": {
+            "mean": 29.4,
+            "lo": 25.8,
+            "hi": 33,
+            "n": 2000,
+            "unit": "hrs"
+          },
+          "p95_harm_ratio": {
+            "mean": 0.138,
+            "lo": 0.1,
+            "hi": 0.18,
+            "n": 2000,
+            "unit": "ratio"
+          },
+          "guardrail_overrides": 89,
+          "attributed_benefit": 635000
+        },
+        "roc_curve": [
+          {
+            "fpr": 0,
+            "tpr": 0
+          },
+          {
+            "fpr": 0.4,
+            "tpr": 58
+          },
+          {
+            "fpr": 1.22,
+            "tpr": 85.2
+          },
+          {
+            "fpr": 3,
+            "tpr": 91.5
+          },
+          {
+            "fpr": 100,
+            "tpr": 100
+          }
+        ]
+      }
+    ]
+  }
+]

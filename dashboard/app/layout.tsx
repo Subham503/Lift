@@ -1,10 +1,10 @@
 import "./globals.css";
-import Link from "next/link";
 import React from "react";
+import { AppShell } from "@/components/AppShell";
 
 export const metadata = {
-  title: "Lift - Simulation & Evaluation Dashboard",
-  description: "Read-only inspection dashboard for Lift evaluation runs",
+  title: "Lift Console - Safety Guardrails & Decision Simulation",
+  description: "Read-only inspection console for Lift evaluation runs and safety guardrails",
 };
 
 export default function RootLayout({
@@ -13,21 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="dashboard-container">
-          <aside className="sidebar">
-            <h2>Lift Console</h2>
-            <ul className="nav-links">
-              <li><Link href="/">Overview</Link></li>
-              <li><Link href="/runs">Runs</Link></li>
-              <li><Link href="/policies">Policies</Link></li>
-              <li><Link href="/transaction">Transactions</Link></li>
-              <li><Link href="/report">Reports</Link></li>
-            </ul>
-          </aside>
-          <main className="main-content">{children}</main>
-        </div>
+    <html lang="en" className="dark">
+      <head>
+        <meta name="color-scheme" content="dark" />
+      </head>
+      <body className="bg-[#000000] text-[#F5F5F7] min-h-screen selection:bg-[#0A84FF] selection:text-white">
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

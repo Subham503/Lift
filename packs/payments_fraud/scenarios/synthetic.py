@@ -1,16 +1,20 @@
-"""Synthetic payments fraud scenario generator."""
+﻿"""Synthetic payments fraud scenario generator."""
 
-from collections.abc import Generator
+from typing import Any
 
-from core.sim.scenarios import Scenario
-from core.sim.types import Hidden, Observable
+from core.sim.scenarios import SyntheticTransactionScenario
 
 
-class PaymentsFraudSyntheticScenario(Scenario):
-    """Simulates card transactions with velocity and amount features."""
+class PaymentsFraudSyntheticScenario(SyntheticTransactionScenario):
+    """Simulates card transactions with velocity and amount features.
 
-    def __init__(self, name: str = "payments_fraud_synthetic", seed: int = 42) -> None:
-        raise NotImplementedError("phase 01")
+    All parameters are ASSUMPTIONS. See packs/payments_fraud/LIMITS.md.
+    """
 
-    def generate(self) -> Generator[tuple[Observable, Hidden], None, None]:
-        raise NotImplementedError("phase 01")
+    def __init__(
+        self,
+        name: str = "payments_fraud_synthetic",
+        seed: int = 42,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__(name=name, seed=seed, **kwargs)

@@ -1,4 +1,4 @@
-﻿"""World environment simulator and outcome resolution."""
+"""World environment simulator and outcome resolution."""
 
 import math
 import numbers

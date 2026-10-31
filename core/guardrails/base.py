@@ -1,4 +1,4 @@
-﻿"""Base guardrail interface and evaluation logic."""
+"""Base guardrail interface and evaluation logic."""
 
 from abc import ABC, abstractmethod
 from dataclasses import replace

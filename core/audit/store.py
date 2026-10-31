@@ -1,4 +1,4 @@
-﻿"""Append-only audit store."""
+"""Append-only audit store."""
 
 from __future__ import annotations
 

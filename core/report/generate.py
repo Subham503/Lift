@@ -1,4 +1,4 @@
-﻿"""Evaluation report generator."""
+"""Evaluation report generator."""
 
 from __future__ import annotations
 

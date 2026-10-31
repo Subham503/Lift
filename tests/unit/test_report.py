@@ -1,4 +1,4 @@
-﻿from datetime import UTC, datetime
+from datetime import UTC, datetime
 
 import pytest
 
@@ -93,7 +93,9 @@ def test_table_and_pipe_escape(tmp_path):
 
 
 def test_fixture_source_labeled(tmp_path):
-    out = read(generate_report({**RESULTS, "source": "fixture"}, tmp_path / "a.md", generated_at=T1))
+    out = read(
+        generate_report({**RESULTS, "source": "fixture"}, tmp_path / "a.md", generated_at=T1)
+    )
     assert "DEMO FIXTURE" in out
 
 
@@ -104,7 +106,9 @@ def test_naive_datetime_rejected(tmp_path):
 
 def test_bad_policy_entry_rejected(tmp_path):
     with pytest.raises(ValueError):
-        generate_report({"policies": [{"name": "x", "metrics": {}}]}, tmp_path / "a.md", generated_at=T1)
+        generate_report(
+            {"policies": [{"name": "x", "metrics": {}}]}, tmp_path / "a.md", generated_at=T1
+        )
 
 
 def test_creates_parent_and_returns_path(tmp_path):

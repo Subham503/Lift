@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 
 from core.audit.store import AuditStore
 

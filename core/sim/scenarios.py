@@ -1,4 +1,4 @@
-﻿"""Scenario definitions and base generator classes."""
+"""Scenario definitions and base generator classes."""
 
 from __future__ import annotations
 

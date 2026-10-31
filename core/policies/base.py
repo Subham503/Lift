@@ -1,4 +1,4 @@
-﻿"""Base decision policy class."""
+"""Base decision policy class."""
 
 from __future__ import annotations
 
@@ -51,5 +51,3 @@ class Policy(ABC):
 
 
 BasePolicy = Policy
-
-

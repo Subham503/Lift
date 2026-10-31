@@ -1,4 +1,4 @@
-﻿"""Baseline Do-Nothing policy."""
+"""Baseline Do-Nothing policy."""
 
 from ..sim.types import Action, Observable
 from .base import Policy

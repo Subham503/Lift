@@ -1,4 +1,4 @@
-﻿import numpy as np
+import numpy as np
 import pytest
 
 from core.eval.bootstrap import bootstrap_ci, evaluate_lift, paired_bootstrap_ci

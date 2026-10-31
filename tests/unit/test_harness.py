@@ -1,4 +1,4 @@
-﻿import dataclasses
+import dataclasses
 import math
 
 import pytest
@@ -50,7 +50,9 @@ class VetoAll:
 
 
 def fraud_ids(seed):
-    return {o.id for o, h in SyntheticTransactionScenario().with_seed(seed).generate() if h.is_positive}
+    return {
+        o.id for o, h in SyntheticTransactionScenario().with_seed(seed).generate() if h.is_positive
+    }
 
 
 def mean(xs):
@@ -91,7 +93,14 @@ def test_features_informative_but_overlapping():
 
 @pytest.mark.parametrize(
     "kwargs",
-    [{"n_events": 0}, {"fraud_rate": 1.5}, {"fraud_rate": float("nan")}, {"amount_min": 0.0}, {"amount_min": 10.0, "amount_max": 5.0}, {"seed": -1}],
+    [
+        {"n_events": 0},
+        {"fraud_rate": 1.5},
+        {"fraud_rate": float("nan")},
+        {"amount_min": 0.0},
+        {"amount_min": 10.0, "amount_max": 5.0},
+        {"seed": -1},
+    ],
 )
 def test_scenario_validation(kwargs):
     with pytest.raises(ValueError):
@@ -108,7 +117,10 @@ def test_same_seed_same_digest_and_records():
 
 def test_different_seed_different_digest():
     h = EvalHarness()
-    assert h.run(DoNothingPolicy(), seed=42).events_digest != h.run(DoNothingPolicy(), seed=43).events_digest
+    assert (
+        h.run(DoNothingPolicy(), seed=42).events_digest
+        != h.run(DoNothingPolicy(), seed=43).events_digest
+    )
 
 
 @pytest.mark.parametrize("decision", ["ALLOW", "BLOCK", "REVIEW", "GIVE_UP"])
@@ -162,7 +174,11 @@ def test_negative_seed_rejected():
 # ---- losses match hand calculation ----
 def test_do_nothing_loss_matches_hand_calc():
     sc = SyntheticTransactionScenario()
-    expected = math.fsum(h.metadata["amount"] + DEFAULT_COSTS.chargeback_fee for _, h in sc.generate() if h.is_positive)
+    expected = math.fsum(
+        h.metadata["amount"] + DEFAULT_COSTS.chargeback_fee
+        for _, h in sc.generate()
+        if h.is_positive
+    )
     res = EvalHarness().run(DoNothingPolicy(), seed=42)
     assert math.fsum(r["actual_loss"] for r in res.records) == pytest.approx(expected)
     assert not any(r["overridden"] for r in res.records)
@@ -170,7 +186,11 @@ def test_do_nothing_loss_matches_hand_calc():
 
 def test_block_all_loss_matches_hand_calc():
     sc = SyntheticTransactionScenario()
-    expected = math.fsum(DEFAULT_COSTS.block_legit_loss(h.metadata["amount"]) for _, h in sc.generate() if not h.is_positive)
+    expected = math.fsum(
+        DEFAULT_COSTS.block_legit_loss(h.metadata["amount"])
+        for _, h in sc.generate()
+        if not h.is_positive
+    )
     res = EvalHarness().run(Fixed("BLOCK"), seed=42)
     assert math.fsum(r["actual_loss"] for r in res.records) == pytest.approx(expected)
 
@@ -178,7 +198,9 @@ def test_block_all_loss_matches_hand_calc():
 # ---- guardrails and audit ----
 def test_guardrail_veto_recorded_and_applied():
     res = EvalHarness(guardrail=VetoAll()).run(Fixed("BLOCK"), seed=42)
-    assert all(r["final"] == "REVIEW" and r["overridden"] and r["vetoes"] == ["TEST"] for r in res.records)
+    assert all(
+        r["final"] == "REVIEW" and r["overridden"] and r["vetoes"] == ["TEST"] for r in res.records
+    )
     assert all(r["actual_loss"] == pytest.approx(4.0) for r in res.records if not r["is_fraud"])
 
 
@@ -195,7 +217,9 @@ def test_single_and_list_guardrail_equal():
 
 def test_audit_written_without_hidden_truth(tmp_path):
     store = AuditStore(tmp_path / "a.jsonl", durable=False)
-    EvalHarness(scenario=SyntheticTransactionScenario(n_events=50), audit_store=store).run(DoNothingPolicy(), seed=1)
+    EvalHarness(scenario=SyntheticTransactionScenario(n_events=50), audit_store=store).run(
+        DoNothingPolicy(), seed=1
+    )
     rows = store.read_all()
     assert len(rows) == 50 and rows[0]["tx"] == "tx_0001"
     assert not ({"is_fraud", "true_label", "is_positive"} & set(rows[0]))

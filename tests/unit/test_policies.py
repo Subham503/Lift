@@ -1,4 +1,4 @@
-﻿import pytest
+import pytest
 
 from core.policies.base import Policy
 from core.policies.do_nothing import DoNothingPolicy

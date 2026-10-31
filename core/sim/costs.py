@@ -1,4 +1,4 @@
-﻿"""Assumed cost model for Lift simulations.
+"""Assumed cost model for Lift simulations.
 
 EVERY NUMBER HERE IS AN ASSUMPTION, NOT A MEASUREMENT. Results computed with
 it are only valid "under this assumed cost model". Packs may pass their own.

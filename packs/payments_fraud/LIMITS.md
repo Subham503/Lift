@@ -1,4 +1,4 @@
-﻿# Payments Fraud Simulation Limits & Known Caveats
+# Payments Fraud Simulation Limits & Known Caveats
 
 ## 1. Results measured on real data
 None. No real transaction data has been used. Every figure from this pack is SIMULATED.

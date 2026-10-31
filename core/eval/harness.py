@@ -1,4 +1,4 @@
-﻿"""Evaluation harness coordinating policies, guardrails, and scenarios."""
+"""Evaluation harness coordinating policies, guardrails, and scenarios."""
 
 from __future__ import annotations
 
@@ -69,7 +69,9 @@ class EvalHarness:
     ):
         self.policy = policy
         self.rails = _as_rails(guardrail)
-        self.scenario: Scenario = scenario if scenario is not None else SyntheticTransactionScenario()
+        self.scenario: Scenario = (
+            scenario if scenario is not None else SyntheticTransactionScenario()
+        )
         self.audit_store = audit_store
         self.costs = costs
 

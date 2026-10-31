@@ -1,4 +1,4 @@
-﻿import dataclasses
+import dataclasses
 
 import numpy as np
 import pytest
@@ -17,7 +17,9 @@ def hid(fraud, amount=AMT, label="x"):
 
 
 def run(decision, fraud, costs=DEFAULT_COSTS, amount=AMT, seed=1):
-    return resolve(Action(decision=decision), hid(fraud, amount), np.random.default_rng(seed), costs)
+    return resolve(
+        Action(decision=decision), hid(fraud, amount), np.random.default_rng(seed), costs
+    )
 
 
 @pytest.mark.parametrize(
@@ -56,7 +58,9 @@ def test_review_details():
 @pytest.mark.parametrize("fraud", [True, False])
 def test_label_text_never_changes_outcome(decision, fraud):
     a = resolve(Action(decision=decision), hid(fraud, label="phishing"), np.random.default_rng(3))
-    b = resolve(Action(decision=decision), hid(fraud, label="card_stolen"), np.random.default_rng(3))
+    b = resolve(
+        Action(decision=decision), hid(fraud, label="card_stolen"), np.random.default_rng(3)
+    )
     assert a == b
     assert "phishing" not in repr(a)
 
@@ -97,7 +101,14 @@ def test_same_seed_same_outcome():
 
 @pytest.mark.parametrize(
     "meta",
-    [{}, {"amount": -1}, {"amount": float("nan")}, {"amount": float("inf")}, {"amount": True}, {"amount": "5"}],
+    [
+        {},
+        {"amount": -1},
+        {"amount": float("nan")},
+        {"amount": float("inf")},
+        {"amount": True},
+        {"amount": "5"},
+    ],
 )
 def test_bad_amount_raises(meta):
     h = Hidden(is_positive=True, true_label="x", metadata=meta)
@@ -122,7 +133,12 @@ def test_zero_amount_fraud_still_pays_fee():
 def test_cost_model_is_frozen_and_validated():
     with pytest.raises(dataclasses.FrozenInstanceError):
         DEFAULT_COSTS.chargeback_fee = 1.0  # type: ignore[misc]
-    for bad in ({"chargeback_fee": -1}, {"margin_rate": 1.5}, {"review_catch_rate": 2}, {"analyst_hourly": float("nan")}):
+    for bad in (
+        {"chargeback_fee": -1},
+        {"margin_rate": 1.5},
+        {"review_catch_rate": 2},
+        {"analyst_hourly": float("nan")},
+    ):
         with pytest.raises(ValueError):
             CostModel(**bad)
 

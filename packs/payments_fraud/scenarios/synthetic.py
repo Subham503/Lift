@@ -1,4 +1,4 @@
-﻿"""Synthetic payments fraud scenario generator."""
+"""Synthetic payments fraud scenario generator."""
 
 from typing import Any
 

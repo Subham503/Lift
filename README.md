@@ -1,124 +1,121 @@
-# Lift
+# 100 Days · 100 Web Projects
+A curated archive of frontend experiments — browse, fork, contribute.
 
-[![CI](https://github.com/Subham503/Lift/actions/workflows/ci.yml/badge.svg)](https://github.com/Subham503/Lift/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](pyproject.toml)
-![Status: pre-alpha](https://img.shields.io/badge/status-pre--alpha-orange.svg)
-
-> Don't trust AI decisions. Measure them.
-
-Lift is an open-source toolkit for testing decision policies, such as fraud flagging, against a do-nothing baseline and a tuned rules baseline. Every policy sees the same simulated events. Lift reports the measured difference with confidence intervals, the harm done to good customers, and the limits of the result.
-
-**Status: pre-alpha.** The tooling and the rules are in place. The simulator and the first pack are not built yet, so there are no results to show.
-
-## Why Lift exists
-
-Many AI demos report model accuracy and stop there. A decision system needs more: better than what, at what cost to innocent users, and does it hold up under stress. Lift makes those questions the default output, not an afterthought.
-
-## Results
-
-No results yet.
-
-When the first run exists, this section will show the headline lift with its confidence interval, the harm measured next to it, and the exact command to reproduce it. Every number will carry one tag: `REAL-DATA`, `SIMULATED`, or `ASSUMPTION`.
-
-## How it will work
-
-```
-scenario -> simulator -> policy proposes action -> guardrails may veto
-         -> outcome from hidden truth -> audit log -> report
-```
-
-- Policies see only observable state. Ground truth stays hidden from them.
-- Every policy runs on identical event batches, with fixed seeds.
-- Policies compared: do-nothing baseline, tuned rules, learned model, and an oracle used only as a ceiling.
-- Benefit is always shown next to harm: wrongly blocked customers, friction, review load, and the worst-off group.
-
-This is the design. Items are marked in the status table as they are built.
-
-### Policy dominance in CLI reports
-
-The CLI marks a non-baseline policy as `dominated` when another policy has at least
-as much net benefit and catches at least as much fraud, with a strict improvement
-in one of those measures. The do-nothing baseline remains labeled `baseline` because
-it is the reference point for lift and belongs on the comparison frontier when its
-cost is zero.
-
-## Status
-
-| Area | Status |
-| :--- | :--- |
-| Lint, type checks, CI workflow | Configured |
-| Frozen rule files with hash verification | Done |
-| Guard for banned claims and untagged figures | Done, with unit tests |
-| CLI skeleton (`lift --help`) | Done, commands exit with "not implemented" |
-| Invariant tests | Written, failing by design until implemented |
-| Simulator, RNG streams, guardrails, audit log, bootstrap | Next |
-| Payments fraud pack | Planned |
-| Harm and fairness slices | Planned |
-| Local dashboard | Planned |
-| Second pack (logistics) | Planned |
-
-## Design rules
-
-The project is built under written rules that the code and tests must follow:
-
-- [`core/RULES.md`](core/RULES.md): engine invariants, each backed by a test.
-- [`docs/HONESTY.md`](docs/HONESTY.md): tagging, harm reporting, banned claims, and limits files.
-- [`AGENTS.md`](AGENTS.md): how contributors and coding agents work, phase by phase.
-
-These three files are frozen. A hash check fails the build if they change.
-
-Lift measures decisions inside simulations and public datasets. A simulated result is not evidence of a real deployment outcome. Each pack will ship a `LIMITS.md` that says what is real, what is simulated, and what evidence is still missing.
-
-## Quickstart
-
-Requires Python 3.12 or newer.
-
-Windows (PowerShell):
-
-```powershell
-git clone https://github.com/Subham503/Lift.git
-cd Lift
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -e ".[dev]"
-```
-
-Linux or macOS:
-
-```bash
-git clone https://github.com/Subham503/Lift.git
-cd Lift
-python -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
-```
-
-Run the checks:
-
-```bash
-lift --help
-python scripts/dev.py phase0-check
-```
-
-Expected today: lint, types, guard, and unit tests pass. The invariant stage reports 11 failed tests. That is the intended red baseline, and the stage passes only when exactly those 11 fail with `NotImplementedError`.
-
-## Repository layout
-
-```
-core/        engine: sim, policies, guardrails, eval, audit, report, cli
-packs/       domain packs, plus a template for new ones
-dashboard/   local results viewer (reads result files only)
-docs/        honesty rules, architecture, phase plans
-reports/     phase reports and generated evaluation reports
-tests/       invariants, unit, integration
-scripts/     dev runner and the claim guard
-```
-
-## Contributing
-
-The project is at an early stage and the engine is still moving. Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and the design rules above first. Packs, policies, and scenarios are planned as the main contribution points once the core is stable.
-
-## License
-
-Distributed under the [MIT License](LICENSE).
+## Projects
+- **Day 1 — To-Do List** — ./public/TO_DO_LIST/todolist.html — _tool_ — HTML, CSS, JS
+- **Day 2 — Digital Clock** — ./public/digital_clock/digitalclock.html — _ui_ — HTML, CSS, JS
+- **Day 3 — Indian Flag** — ./public/indianflag/flag.html — _ui_ — HTML, CSS
+- **Day 4 — Dropdown Navbar** — ./public/dropdown_navbar/index.html — _ui_ — HTML, CSS, JS
+- **Day 5 — Animated Cursor** — ./public/Animated-cursor/animated-cursor.html — _ui_ — CSS, JS
+- **Day 6 — Auto Background Slider** — ./public/Background-Image-sider/slider.html — _ui_ — HTML, CSS, JS
+- **Day 7 — Typewriter Effect** — ./public/typewriter/typewriter.html — _ui_ — HTML, CSS, JS
+- **Day 8 — Parallax Website** — ./public/Parallel-x%20website/parallal.html — _ui_ — HTML, CSS, JS
+- **Day 9 — Captcha Generator** — ./public/captcha/captcha.html — _tool_ — HTML, CSS, JS
+- **Day 10 — QR Code Generator** — ./public/qr%20generator/qr.html — _api_ — HTML, JS, API
+- **Day 11 — Express Static Server** — ./public/index.html — _tool_ — Node, Express
+- **Day 12 — Nodemailer Contact Form** — ./public/gmail_nodemailer/public/mail.html — _tool_ — Node, Nodemailer
+- **Day 13 — Login Form — MERN** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/loginusingmern — _tool_ — React, MongoDB, Node
+- **Day 14 — File Uploader** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/file_uploader — _tool_ — Node, Multer
+- **Day 15 — Progress Bar** — ./public/progress_bar/progress_bar.html — _ui_ — HTML, CSS, JS
+- **Day 16 — Custom Scrollbar CSS** — ./public/index.html — _ui_ — CSS
+- **Day 17 — Slider — Swiper API** — ./public/slider%20box/index.html — _ui_ — JS, Swiper
+- **Day 18 — Carousel Solar System** — ./public/carousal/index.html — _ui_ — HTML, CSS, JS
+- **Day 19 — Planto — Plant Website** — ./public/plantwebsite/plant.html — _ui_ — HTML, CSS, JS
+- **Day 20 — EveSparks** — https://evesparks.onrender.com/ — _tool_ — React, Node
+- **Day 21 — Video BG Slider — React** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/travel_website — _ui_ — React
+- **Day 22 — Page Loader** — ./public/pageloader/pageloader.html — _ui_ — CSS, JS
+- **Day 23 — Jarvis Virtual Assistant** — ./public/Jarvis-AI-main/index.html — _api_ — JS, SpeechAPI
+- **Day 24 — AI Chat Bot** — ./public/AI%20ChatBot/chatbot.html — _api_ — JS, API
+- **Day 25 — Tic-Tac-Toe** — ./public/TicTacToe/index.html — _game_ — HTML, CSS, JS
+- **Day 26 — Maze Game** — ./public/Maze-Game-main/index.html — _game_ — Canvas, JS
+- **Day 27 — Memory Game** — ./public/MemoryGame/index.html — _game_ — HTML, CSS, JS
+- **Day 28 — Wordle** — ./public/WORDLE/index.html — _game_ — HTML, CSS, JS
+- **Day 29 — Snake Game** — ./public/snake_game/index.html — _game_ — Canvas, JS
+- **Day 30 — Flappy Bird** — ./public/Flappy-bird-main/index.html — _game_ — Canvas, JS
+- **Day 31 — Password Manager** — ./public/password%20manager/index.html — _tool_ — HTML, CSS, JS
+- **Day 32 — Missionaries & Cannibals** — ./public/Missionaries&Cannibals/index.html — _game_ — JS
+- **Day 33 — Weather Forecast** — ./public/Weather%20Forcasting/index.html — _api_ — JS, WeatherAPI
+- **Day 34 — Email Validator** — ./public/email%20validator/index.html — _tool_ — HTML, JS
+- **Day 35 — JS Calculator** — ./public/Vanilla-JavaScript-Calculator-master/index.html — _tool_ — HTML, CSS, JS
+- **Day 36 — Medical App** — ./public/Medical_App/index.html — _tool_ — HTML, CSS, JS
+- **Day 37 — 2048 Game** — ./public/2048_game/index.html — _game_ — HTML, CSS, JS
+- **Day 38 — GitHub Profile Finder** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/github_profile_finder — _api_ — JS, GitHub API
+- **Day 39 — Notes App** — ./public/notes-app/index.html — _tool_ — HTML, CSS, JS
+- **Day 40 — Analog Clock** — ./public/AnalogClock/index.html — _ui_ — Canvas, JS
+- **Day 41 — Scroll Dark Game** — ./public/Scroll%20Game%20Dark%20Run/index.html — _game_ — Canvas, JS
+- **Day 42 — Amazon Clone** — ./public/Amazon_Clone/index.html — _clone_ — HTML, CSS
+- **Day 43 — Password Generator** — ./public/Password_Generator/index.html — _tool_ — HTML, CSS, JS
+- **Day 44 — BMI Calculator** — ./public/BMI_Calculator/index.html — _tool_ — HTML, CSS, JS
+- **Day 45 — Black Jack** — ./public/BlackJack/blackJ.html — _game_ — HTML, CSS, JS
+- **Day 46 — Palindrome Generator** — ./public/Palindrome_Generator/index.html — _tool_ — HTML, JS
+- **Day 47 — Ping Pong** — ./public/ping/index.html — _game_ — Canvas, JS
+- **Day 48 — Text to Voice Converter** — ./public/TextToVoiceConverter/index.html — _api_ — JS, SpeechAPI
+- **Day 49 — URL Shortener** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/url_shortener — _tool_ — Node, Express
+- **Day 50 — Recipe Genie** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Recipe-Genie — _api_ — JS, API
+- **Day 51 — Netflix Clone** — ./public/Netflix_Cloning/Index.html — _clone_ — HTML, CSS
+- **Day 52 — ClimaCode 2.0** — ./public/ClimaCode%202.0/index.html — _api_ — JS, WeatherAPI
+- **Day 53 — E-Commerce Cart** — ./public/e-commerce_cart/index.html — _tool_ — HTML, CSS, JS
+- **Day 54 — Budget Tracker** — ./public/Budget%20Tracker/index.html — _tool_ — HTML, CSS, JS
+- **Day 55 — Cricket Game** — ./public/cricket/index.html — _game_ — HTML, CSS, JS
+- **Day 56 — Pastebin — Svelte** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/pastebin — _tool_ — Svelte
+- **Day 57 — Glowing Social Media Icons** — ./public/Social%20Media%20Glowing/index.html — _ui_ — CSS
+- **Day 58 — Music App** — ./public/Music%20App/index.html — _ui_ — HTML, CSS, JS
+- **Day 59 — Blog Page** — ./public/Blog%20Page/index.html — _ui_ — HTML, CSS
+- **Day 60 — Marketing Website** — ./public/marketing_website/index.html — _ui_ — HTML, CSS, JS
+- **Day 61 — Hologram Button** — ./public/Holo%20Button/index.html — _ui_ — CSS, JS
+- **Day 62 — Solar System Explorer** — ./public/Solar%20System%20Explorer%20in%20CSS%20only%20haml/template.html — _ui_ — CSS
+- **Day 63 — Image to Text App** — ./public/Image-To-Text-App/index.html — _api_ — JS, OCR API
+- **Day 64 — Zomato Clone** — ./public/zomato-clone/zomato.html — _clone_ — HTML, CSS
+- **Day 65 — The Cube** — ./public/The%20Cube/index.html — _ui_ — CSS, JS
+- **Day 66 — Flask Auth App** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/flask_auth_app — _tool_ — Python, Flask
+- **Day 67 — Blog Website** — ./public/blog/main.html — _ui_ — HTML, CSS, JS
+- **Day 68 — 3D Rotating Card** — ./public/3d%20cards/index.html — _ui_ — CSS, JS
+- **Day 69 — Spotify Clone** — ./public/spotify-clone%20-project/index.html — _clone_ — HTML, CSS
+- **Day 70 — Insect Catch Game** — ./public/Insect-Catch-Game/index.html — _game_ — HTML, CSS, JS
+- **Day 71 — Quotely Laughs** — ./public/Quotely-Laughs/index.html — _api_ — JS, API
+- **Day 72 — Contact Book** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Contact%20Book — _tool_ — HTML, CSS, JS
+- **Day 73 — Candy Crush Game** — ./public/Candy_Crush_Game/index.html — _game_ — Canvas, JS
+- **Day 74 — Stock Profit Calculator** — ./public/Stock-Profit-Calculator/index.html — _tool_ — HTML, CSS, JS
+- **Day 75 — Code Space Jump Game** — ./public/code-jump-space-game/index.html — _game_ — Canvas, JS
+- **Day 76 — Animated Searchbar** — ./public/Animated%20Searchbar/index.html — _ui_ — CSS, JS
+- **Day 77 — Rock Paper Scissors** — ./public/Stone-Paper-Scissor/index.html — _game_ — HTML, CSS, JS
+- **Day 78 — NPM Package Search** — ./public/NPM%20Package%20Search/index.html — _api_ — JS, npm API
+- **Day 79 — LinkedIn Clone** — ./public/Linkedin-Clone/index.html — _clone_ — HTML, CSS
+- **Day 80 — Resume Studio** — ./public/ResumeStudio/index.html — _tool_ — HTML, CSS, JS
+- **Day 81 — Simon Says Game** — ./public/Simon_Says_Game/index.html — _game_ — HTML, CSS, JS
+- **Day 82 — Love Calculator** — ./public/Love-Calculator/index.html — _game_ — HTML, CSS, JS
+- **Day 83 — Exchange Currency** — ./public/Exchange_Currency/index.html — _api_ — JS, API
+- **Day 84 — Lights Out Puzzle** — ./public/Lights_Out_Puzzle/index.html — _game_ — HTML, CSS, JS
+- **Day 85 — Image Search Engine** — ./public/Image Search Engine/index.html — _api_ — JS, Unsplash API
+- **Day 86 — 3D Profile Card** — ./public/3d profile Card/index.html — _ui_ — CSS, JS
+- **Day 87 — Breakout Game** — ./public/Breakout game/index.html — _game_ — Canvas, JS
+- **Day 88 — Job Dashboard** — ./public/Job dashboard/jobs.html — _ui_ — HTML, CSS, JS
+- **Day 89 — N-Queens Solver** — ./public/N_Queen/index.html — _tool_ — HTML, CSS, JS
+- **Day 90 — Quiz App with Timer** — ./public/QuizeApp Timer/index1.html — _tool_ — HTML, CSS, JS
+- **Day 91 — Voting App Backend** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Voting_Application_Backend — _tool_ — Node, MongoDB
+- **Day 92 — Slide Puzzle Game** — ./public/Slide puzzle Game/index.html — _game_ — HTML, CSS, JS
+- **Day 93 — TextUtils — React** — https://github.com/dhairyagothi/100_days_100_web_project/tree/Main/public/Textutils — _tool_ — React
+- **Day 94 — Hangman Game** — ./public/HangmanGame/index.html — _game_ — HTML, CSS, JS
+- **Day 95 — TodoList — React TS** — ./public/TodoList-React-TS-Tailwind/index.html — _tool_ — React, TypeScript
+- **Day 96 — HCL Color Generator** — ./public/HCL Color Generator/index.html — _tool_ — HTML, CSS, JS
+- **Day 97 — Time Capsule** — ./public/Time-Capsule/index.html — _tool_ — HTML, CSS, JS
+- **Day 98 — Virtual Piano** — ./public/Virtual Piano/index.html — _ui_ — JS, Web Audio
+- **Day 99 — NASA APOD Extension** — ./public/NASA-APOD/popup.html — _api_ — JS, NASA API
+- **Day 100 — Text Saver Extension** — ./public/Text_Saver_Ext/popup.html — _tool_ — JS, Chrome API
+- **Day 101 — Personal Finance Tracker** — ./public/FinanceTracker/index.html — _tool_ — HTML, CSS, JS
+- **Day 102 — Travel Booking Website** — ./public/Travel_booking_website/index.html — _ui_ — HTML, CSS, JS
+- **Day 103 — Drumkit Game** — ./public/Drumkit_Game/index.html — _ui_ — JS, Web Audio
+- **Day 104 — Debug Website** — ./public/Debug-Website/index.html — _tool_ — HTML, CSS, JS
+- **Day 105 — Periodic Table** — ./public/Periodic Table/index.html — _ui_ — HTML, CSS, JS
+- **Day 106 — Plants Website** — ./public/Plants Website/index.html — _ui_ — HTML, CSS, JS
+- **Day 107 — DocNow** — ./public/DocNow/index.html — _tool_ — HTML, CSS, JS
+- **Day 108 — Expense Tracker** — ./public/expense_Tracker/index.html — _tool_ — HTML, CSS, JS
+- **Day 109 — Mood Tracker** — ./public/Mood Tracker/index.html — _tool_ — HTML, CSS, JS
+- **Day 110 — CryptoShow** — ./public/CRYPTOSHOW/index.html — _api_ — JS, Crypto API
+- **Day 111 — Whack-a-Mole Game** — ./public/Whack-a-Mole Game/index.html — _game_ — HTML, CSS, JS
+- **Day 112 — Nykaa Clone** — ./public/Nykaa-clone/index.html — _clone_ — HTML, CSS
+- **Day 113 — CPU Scheduler** — ./public/CpuScheduler/index.html — _tool_ — HTML, CSS, JS
+- **Day 114 — EchoNotes** — ./public/EchoNotes/index.html — _tool_ — JS, SpeechAPI
+- **Day 115 — Event Registration System** — https://event-registration-system-w10a.onrender.com/ — _tool_ — Node, Express
+- **Day 116 — AI Image Classifier** — ./public/AI Image Classifier/index.html — _tool_ — HTML, CSS, JS, AI
+- **Day 117 — Habit Tracker Web App** — ./public/Habit-Tracker-Web-App/index.html — _undefined_ — 

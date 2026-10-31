@@ -1,0 +1,29 @@
+﻿# Evaluation Report: {{ title }}
+
+Generated at: {{ generated_at }}
+
+## Meta
+- Run: {{ run_id }}
+- Pack: {{ pack }}
+- Scenario: {{ scenario }}
+- Commit hash: {{ commit }}
+- Command: {{ command }}
+- Seeds: {{ seeds }}
+- Config hash: {{ config_hash }}
+- Library versions: {{ versions }}
+- Tag: {{ tag }}
+{% if source_note %}
+- Source: {{ source_note }}
+{% endif %}
+{% if rows %}
+
+## Comparative results ({{ tag }})
+
+| Policy | Type | Net benefit (USD) | Fraud caught | FPR | Review load | Overrides |
+|---|---|---|---|---|---|---|
+{% for r in rows %}
+| {{ r.name }} | {{ r.kind }} | {{ r.net }} | {{ r.fraud }} | {{ r.fpr }} | {{ r.review }} | {{ r.overrides }} |
+{% endfor %}
+
+All intervals are 95% bootstrap CIs.
+{% endif %}

@@ -24,6 +24,8 @@ from rich.text import Text
 OUT = Path("docs/assets")
 WIDTH = 100
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
+# The claim guard rejects untagged percent figures, even inside captures.
+PROGRESS = re.compile(r"\s*\[\s*\d+%\]")
 EXPECTED_INVARIANTS = 11
 
 
@@ -77,7 +79,8 @@ def invariants_asset() -> None:
         is_result = "::" in plain and ("PASSED" in plain or "FAILED" in plain)
         is_summary = re.search(r"\d+ (passed|failed)", plain) is not None
         if is_result or is_summary:
-            kept.append(line.replace("\\", "/"))
+            cleaned = PROGRESS.sub("", line)
+            kept.append(cleaned.replace("\\", "/"))
         if is_result and "PASSED" in plain:
             passed += 1
     if passed != EXPECTED_INVARIANTS:

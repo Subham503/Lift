@@ -8,6 +8,7 @@ None. No real transaction data has been used. Every figure from this pack is SIM
 - Amounts are log-uniformly modeled, which may underestimate real-world long-tail merchant distributions.
 - Chargebacks happen deterministically. Chargeback lag and friendly-fraud disputes are not modeled.
 - Fraud and legit features overlap by design, so no policy can be perfect. The overlap is not calibrated to real data.
+- Part of the fraud is easy by construction: a velocity of 3 or more never occurs in legit events. Expect easy-looking results. They say little about real fraud.
 
 ## 3. Assumptions
 Every row below is an ASSUMPTION chosen by us, not measured.
@@ -25,6 +26,9 @@ Every row below is an ASSUMPTION chosen by us, not measured.
 | GIVE_UP | treated as ALLOW | ASSUMPTION | Chosen by us |
 | Guardrail veto of a BLOCK | becomes REVIEW | ASSUMPTION | Chosen by us |
 | Minimum seeds | 20 | ASSUMPTION | Underpowered flag below this |
+| High-value guardrail limit | automatic BLOCK above $4,000 becomes REVIEW | ASSUMPTION | Default taken from the pack stub |
+| Rule policy starting thresholds | amount 2000, velocity 5 | ASSUMPTION | Defaults from the pack stub, tuned later on dev seeds |
+| Threshold model | logistic score fitted on dev seeds, labels used only at fit time | ASSUMPTION | Model form chosen by us |
 
 Costs live in `core/sim/costs.py`. Scenario parameters live in `core/sim/scenarios.py`. Results are valid only under these values.
 
